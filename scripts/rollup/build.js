@@ -36,6 +36,8 @@ process.on('unhandledRejection', err => {
 });
 
 const {
+  ESM_DEV,
+  ESM_PROD,
   UMD_DEV,
   UMD_PROD,
   UMD_PROFILING,
@@ -175,6 +177,9 @@ function getFormat(bundleType) {
     case RN_FB_PROD:
     case RN_FB_PROFILING:
       return `cjs`;
+    case ESM_DEV:
+    case ESM_PROD:
+      return `es`;
   }
 }
 
@@ -182,6 +187,10 @@ function getFilename(name, globalName, bundleType) {
   // we do this to replace / to -, for react-dom/server
   name = name.replace('/', '-');
   switch (bundleType) {
+    case ESM_DEV:
+      return `${name}.development.mjs`;
+    case ESM_PROD:
+      return `${name}.production.min.mjs`;
     case UMD_DEV:
       return `${name}.development.js`;
     case UMD_PROD:
@@ -216,6 +225,7 @@ function isProductionBundleType(bundleType) {
     case FB_WWW_DEV:
     case RN_OSS_DEV:
     case RN_FB_DEV:
+    case ESM_DEV:
       return false;
     case UMD_PROD:
     case NODE_PROD:
@@ -227,6 +237,7 @@ function isProductionBundleType(bundleType) {
     case RN_OSS_PROFILING:
     case RN_FB_PROD:
     case RN_FB_PROFILING:
+    case ESM_PROD:
       return true;
     default:
       throw new Error(`Unknown type: ${bundleType}`);
@@ -245,6 +256,8 @@ function isProfilingBundleType(bundleType) {
     case RN_OSS_PROD:
     case UMD_DEV:
     case UMD_PROD:
+    case ESM_DEV:
+    case ESM_PROD:
       return false;
     case FB_WWW_PROFILING:
     case NODE_PROFILING:
@@ -590,6 +603,8 @@ async function buildEverything() {
   // and to avoid any potential race conditions.
   // eslint-disable-next-line no-for-of-loops/no-for-of-loops
   for (const bundle of Bundles.bundles) {
+    await createBundle(bundle, ESM_DEV);
+    await createBundle(bundle, ESM_PROD);
     await createBundle(bundle, UMD_DEV);
     await createBundle(bundle, UMD_PROD);
     await createBundle(bundle, UMD_PROFILING);

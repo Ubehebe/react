@@ -1,6 +1,8 @@
 'use strict';
 
 const bundleTypes = {
+  ESM_DEV: 'ESM_DEV',
+  ESM_PROD: 'ESM_PROD',
   UMD_DEV: 'UMD_DEV',
   UMD_PROD: 'UMD_PROD',
   UMD_PROFILING: 'UMD_PROFILING',
@@ -18,6 +20,8 @@ const bundleTypes = {
   RN_FB_PROFILING: 'RN_FB_PROFILING',
 };
 
+const ESM_DEV = bundleTypes.ESM_DEV;
+const ESM_PROD = bundleTypes.ESM_PROD;
 const UMD_DEV = bundleTypes.UMD_DEV;
 const UMD_PROD = bundleTypes.UMD_PROD;
 const UMD_PROFILING = bundleTypes.UMD_PROFILING;
@@ -58,6 +62,8 @@ const bundles = [
   {
     label: 'core',
     bundleTypes: [
+      ESM_DEV,
+      ESM_PROD,
       UMD_DEV,
       UMD_PROD,
       UMD_PROFILING,
@@ -77,6 +83,8 @@ const bundles = [
   {
     label: 'dom-client',
     bundleTypes: [
+      ESM_DEV,
+      ESM_PROD,
       UMD_DEV,
       UMD_PROD,
       UMD_PROFILING,

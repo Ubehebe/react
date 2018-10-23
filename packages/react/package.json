@@ -13,9 +13,10 @@
     "README.md",
     "index.js",
     "cjs/",
-    "umd/"
+    "umd/",
+    "esm/"
   ],
-  "main": "index.js",
+  "main": "esm/react.development",
   "repository": "facebook/react",
   "engines": {
     "node": ">=0.10.0"

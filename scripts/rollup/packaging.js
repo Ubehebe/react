@@ -10,6 +10,8 @@ const {
 } = require('./utils');
 
 const {
+  ESM_DEV,
+  ESM_PROD,
   UMD_DEV,
   UMD_PROD,
   UMD_PROFILING,
@@ -47,6 +49,9 @@ function getBundleOutputPaths(bundleType, filename, packageName) {
         `build/node_modules/${packageName}/umd/${filename}`,
         `build/dist/${filename}`,
       ];
+    case ESM_DEV:
+    case ESM_PROD:
+      return [`build/node_modules/${packageName}/esm/${filename}`];
     case FB_WWW_DEV:
     case FB_WWW_PROD:
     case FB_WWW_PROFILING:

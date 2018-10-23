@@ -3,6 +3,8 @@
 const Bundles = require('./bundles');
 const reactVersion = require('../../package.json').version;
 
+const ESM_DEV = Bundles.bundleTypes.ESM_DEV;
+const ESM_PROD = Bundles.bundleTypes.ESM_PROD;
 const UMD_DEV = Bundles.bundleTypes.UMD_DEV;
 const UMD_PROD = Bundles.bundleTypes.UMD_PROD;
 const UMD_PROFILING = Bundles.bundleTypes.UMD_PROFILING;
@@ -27,6 +29,12 @@ const license = ` * Copyright (c) Facebook, Inc. and its affiliates.
  * LICENSE file in the root directory of this source tree.`;
 
 const wrappers = {
+  [ESM_DEV](source, globalName, filename, moduleType) {
+    return source;
+  },
+  [ESM_PROD](source, globalName, filename, moduleType) {
+    return source;
+  },
   /***************** UMD_DEV *****************/
   [UMD_DEV](source, globalName, filename, moduleType) {
     return `/** @license React v${reactVersion}
