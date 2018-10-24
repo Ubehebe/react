@@ -16,7 +16,7 @@
     "umd/",
     "esm/"
   ],
-  "main": "esm/react.development",
+  "main": "index.js",
   "repository": "facebook/react",
   "engines": {
     "node": ">=0.10.0"

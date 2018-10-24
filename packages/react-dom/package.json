@@ -2,7 +2,7 @@
   "name": "react-dom",
   "version": "16.6.0",
   "description": "React package for working with the DOM.",
-  "main": "esm/react-dom.development",
+  "main": "index.js",
   "repository": "facebook/react",
   "keywords": [
     "react"
