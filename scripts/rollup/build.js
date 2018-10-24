@@ -450,6 +450,9 @@ async function createBundle(bundle, bundleType) {
     if (fs.existsSync(resolvedFBEntry)) {
       resolvedEntry = resolvedFBEntry;
     }
+  } else if (bundleType === ESM_DEV || bundleType === ESM_PROD) {
+    // TODO: https://github.com/facebook/react/issues/11503
+    resolvedEntry = resolvedEntry.replace('.js', '.mjs');
   }
 
   const shouldBundleDependencies =
